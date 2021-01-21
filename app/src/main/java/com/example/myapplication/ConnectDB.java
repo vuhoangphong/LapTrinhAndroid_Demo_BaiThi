@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -25,5 +26,20 @@ public class ConnectDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    
+    public boolean addNV(NhanVienModel nv){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID",nv.getId());
+        contentValues.put("HoTen",nv.getHoTen());
+        contentValues.put("TinhThanh",nv.getTinhThanh());
+        contentValues.put("QuanHuyen", nv.getQuanHuyen());
+        contentValues.put("Luong",nv.getLuong());
+        long inserted = db.insert("NhanVien",null,contentValues);
+        if(inserted == -1 )
+            return false;
+        else
+            return true;
+    }
+
+
 }
