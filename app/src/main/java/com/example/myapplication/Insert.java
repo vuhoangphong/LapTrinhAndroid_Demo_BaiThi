@@ -1,12 +1,18 @@
 
 package com.example.myapplication;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,15 +21,34 @@ import android.widget.Spinner;
 
 public class Insert extends AppCompatActivity {
     Spinner sp1,sp;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
         Button btnAddNV = (Button)findViewById(R.id.save);
-       sp1= findViewById(R.id.QuanHuyen);
-       sp = findViewById(R.id.TinhThanh);
+        sp1= findViewById(R.id.QuanHuyen);
+        sp = findViewById(R.id.TinhThanh);
 
 
+        NhanVienModel nhanVienModel = (NhanVienModel) getIntent().getSerializableExtra("nhanVienModel");
+        if (nhanVienModel != null) {
+            EditText tenNV = (EditText) findViewById(R.id.tenNv);
+            EditText maNV = (EditText) findViewById(R.id.maNv);
+            Spinner tinh = findViewById(R.id.TinhThanh);
+            Spinner quan = findViewById(R.id.QuanHuyen);
+            EditText luong = (EditText) findViewById(R.id.luong);
+
+
+            tenNV.setText(nhanVienModel.getHoTen());
+            //maNV.setText(nhanVienModel.get);
+            int posTinh = ((ArrayAdapter<String>) tinh.getAdapter()).getPosition(nhanVienModel.getTinhThanh());
+            tinh.setSelection(posTinh);
+
+            //int posQuan = ((ArrayAdapter<String>) quan.getAdapter()).getPosition(nhanVienModel.getQuanHuyen());
+            //quan.setSelection(posQuan);
+            luong.setText(nhanVienModel.getLuong());
+        }
 
         // sự kiện spinner tỉnh thành thay đổi
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -65,6 +90,8 @@ public class Insert extends AppCompatActivity {
                 EditText luong = (EditText)findViewById(R.id.luong);
                 ConnectDB db=new ConnectDB(getApplicationContext());
                 db.addNV(new NhanVienModel(tenNV.getText().toString(),sp.getSelectedItem().toString(),sp1.getSelectedItem().toString(),luong.getText().toString()));
+                Intent intent = new Intent(Insert.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

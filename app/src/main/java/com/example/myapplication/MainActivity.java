@@ -13,10 +13,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +36,22 @@ public class MainActivity extends AppCompatActivity {
 
         mainAdapter arrayAdapter = new mainAdapter(); // set adapter
         list.setAdapter(arrayAdapter); // set adapter vào list
+
+        // bấm vào item trên cái click thì chuyển thông tin sang insert
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                NhanVienModel nhanVienModel = listNV.get(position);
+
+                Bundle bundle = new Bundle();
+                Intent intent = new Intent(MainActivity.this, Insert.class);
+
+                bundle.putSerializable("nhanVienModel",nhanVienModel);
+                intent = intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
     //khởi tạo menu
     @Override
