@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string-array name="tinh">
+        <item>HN</item>
+        <item>TPHCM</item>
+    </string-array>
+
+
+    <string-array name="HN">
+        <item>TuLiem</item>
+        <item>HoGuom</item>
+    </string-array>
+
+
+    <string-array name="TPHCM">
+        <item>Quan1</item>
+        <item>Quan2</item>
+    </string-array>
 </resources>
