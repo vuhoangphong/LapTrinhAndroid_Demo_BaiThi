@@ -17,9 +17,11 @@ public class Insert extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
         Button btnAddNV = (Button)findViewById(R.id.save);
+        //goi ham them nhanvien
         AddNV(btnAddNV);
 
     }
+    //them nhan vien
     public void AddNV(Button btn){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
