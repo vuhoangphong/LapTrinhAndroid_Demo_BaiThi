@@ -28,7 +28,7 @@ public class Insert extends AppCompatActivity {
                 EditText luong = (EditText)findViewById(R.id.luong);
 
                 ConnectDB db=new ConnectDB(getApplicationContext());
-                db.addNV(new NhanVienModel(-1,tenNV.getText().toString(),"TP HCM","Tan Phu",luong.getText().toString()));
+                db.addNV(new NhanVienModel(tenNV.getText().toString(),"TP HCM","Tan Phu",luong.getText().toString()));
             }
         });
     }

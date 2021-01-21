@@ -29,7 +29,6 @@ public class ConnectDB extends SQLiteOpenHelper {
     public boolean addNV(NhanVienModel nv){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("ID",nv.getId());
         contentValues.put("HoTen",nv.getHoTen());
         contentValues.put("TinhThanh",nv.getTinhThanh());
         contentValues.put("QuanHuyen", nv.getQuanHuyen());

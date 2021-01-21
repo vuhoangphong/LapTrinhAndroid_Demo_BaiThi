@@ -49,6 +49,13 @@ public class NhanVienModel {
     public NhanVienModel() {
 
     }
+    public NhanVienModel(String hoTen, String tinhThanh, String quanHuyen, String luong) {
+
+        HoTen = hoTen;
+        TinhThanh = tinhThanh;
+        QuanHuyen = quanHuyen;
+        Luong = luong;
+    }
 
     public NhanVienModel(int id, String hoTen, String tinhThanh, String quanHuyen, String luong) {
         Id = id;
